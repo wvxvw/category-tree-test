@@ -72,7 +72,7 @@ class CategoryTreeIterative(CategoryTree):
 def category_tree(data={}, type='recursive'):
     '''
     Factory method. Generates either `CategoryTreeRecursive' or
-    `CategoryTreeIterative' object.s
+    `CategoryTreeIterative' objects
     data - See `help(CategoryTree.__init__)' for data format descripion.
     type - a string. Possible values are 'recurisve' or 'iterative'.
     '''
