@@ -23,10 +23,10 @@ class CategoryTree(object):
         either categories, lists of categories or dictionaries.
 
         Example data:
-        "a/b/c" => { "a": { "b": "c" } }
-        ["a/b", "a/c/d"] => { "a": { "b": {}, "c": "d" } }
+        "a/b/c" => {"a": {"b": {"c": {}}}}
+        ["a/b", "a/c/d"] => {"a": {"b": {}, "c": {"d": {}}}}
         { "a/b": "c", "a/c": ["d", "e"] } => 
-            { "a": { "b": "c", "c": { "d": {}, "e": {} } } }
+            {"a": {"b": {"c": {}}, "c": {"d": {}, "e": {}}}}
         '''
         self._tree = tree()
         def add_rec(tree, data):
@@ -39,6 +39,8 @@ class CategoryTree(object):
                     else:
                         for suffix in value:
                             self.add(key + '/' + suffix, tree)
+            elif isinstance(data, str):
+                self.add(data, tree)
             else:
                 for key in data: self.add(key)
         add_rec(self._tree, data)
