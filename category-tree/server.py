@@ -8,6 +8,11 @@ from urlparse import urlparse
 from category_tree import category_tree
 
 def Handler(impl='recursive'):
+    '''
+    Factory for generating CategoryTreeHandler with different
+    CategoryTree implementations.
+    impl - see `help(category_tree)', type argument.
+    '''
     class CategoryTreeHandler(BaseHTTPRequestHandler):
 
         web = path.join(path.dirname(path.realpath(__file__)), '../web/')
@@ -20,7 +25,9 @@ def Handler(impl='recursive'):
         tree = category_tree(type=impl)
 
         def serve_static(self, file, mime):
-            '''The handler for static files'''
+            '''
+            Serves static files with given mime-type.
+            '''
             try:
                 with open(path.join(self.web, file), 'r') as served:
                     self.send_response(200)
@@ -31,10 +38,15 @@ def Handler(impl='recursive'):
                 self.send_error(404, 'File Not Found: %s' % self.path)
 
         def fail(self):
+            '''
+            Sends internal server error message.
+            '''
             self.send_error(500, 'Don\'t know what to do with: %s' % self.path)
         
         def do_GET(self):
-            '''Mandatory GET handler'''
+            '''
+            Handles HTTP GET requests.
+            '''
             url = urlparse(self.path)
             extension = path.splitext(url.path)[1] or '.html'
             if self.path == '/':
@@ -44,14 +56,19 @@ def Handler(impl='recursive'):
             else: self.fail()
 
         def send_preamble(self):
+            '''
+            Starts sending success message.
+            '''
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
         
         def do_POST(self):
+            '''
+            Hanles AJAX requests.
+            '''
             length = int(self.headers['content-length'])
             data = self.rfile.read(length)
-            print 'got post request: %s, %s' % (self.path, data)
             if self.path == '/categories/get':
                 self.send_preamble()
                 self.wfile.write(str(self.tree))
