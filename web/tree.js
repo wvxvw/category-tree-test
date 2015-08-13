@@ -3,17 +3,26 @@ $(function ($) {
         add = $('#add'),
         key = $('#key');
 
+    function isEmpty(dict) {
+        var result = true;
+        for (var key in dict) {
+            result = false;
+            break;
+        }
+        return result;
+    }
+
     function populate(element, data) {
-        if (typeof data == 'string') {
-            $('<li>' + data + '</li>').appendTo(element);
-        } else {
-            $.each(data, function (key, value) {
+        $.each(data, function (key, value) {
+            if (isEmpty(value)) {
+                $('<li>' + key + '</li>').appendTo(element);
+            } else {
                 var li = $('<li><ul><li><b>' + key + '</b></li></ul></li>'), ul;
                 li.appendTo(element);
                 ul = li.children('ul').get(0);
                 populate(ul, value);
-            });
-        }
+            }
+        });
     }
     
     function reset(data) {
