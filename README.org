@@ -23,3 +23,6 @@
 * Running
   Execute =server.py= to start serving HTML page on http://localhost:8080.
   See =server.py --help= for more options.
+
+* Testing
+  Execute =tests.py= (there are currently 6 tests).
