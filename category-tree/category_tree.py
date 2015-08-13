@@ -71,9 +71,7 @@ def category_tree(data={}, type='recursive'):
     '''
     Factory method. Generates either `CategoryTreeRecursive' or
     `CategoryTreeIterative' object.s
-    data - a dictionary. The keys in this dictionary, if they contain
-           forward slashes will be interpreted as categories, subcategories,
-           sub-subcategories and so on.
+    data - See `help(CategoryTree.__init__)' for data format descripion.
     type - a string. Possible values are 'recurisve' or 'iterative'.
     '''
     return { 'recursive': CategoryTreeRecursive,
