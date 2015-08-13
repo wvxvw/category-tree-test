@@ -1,0 +1,25 @@
+* Installation
+  The project uses [[https://virtualenv.pypa.io/en/latest/][Virtualenv]], but it doesn't require that you use one.
+
+** Using Virtualenv
+   Clone the repository, then activate Virtualenv, then install the
+   requirements (none at the moment).
+   #+begin_src sh
+     git clone https://github.com/wvxvw/category-tree-test.git
+     virtualenv ./category-tree-test
+     cd ./category-tree-test
+     . ./bin/activate
+     # Terminal changes prompt to indicate you are using 
+     # virtual environment
+     pip install -r ./requirements.txt
+   #+end_src
+
+** Global Install
+   #+begin_src sh
+     git clone https://github.com/wvxvw/category-tree-test.git
+     sudo pip install -r ./requirements.txt
+   #+end_src
+
+* Running
+  Execute =server.py= to start serving HTML page on http://localhost:8080.
+  See =server.py --help= for more options.
