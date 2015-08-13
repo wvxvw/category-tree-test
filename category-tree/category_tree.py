@@ -61,7 +61,7 @@ class CategoryTreeRecursive(CategoryTree):
 
 class CategoryTreeIterative(CategoryTree):
     '''
-    This class addes entries iteratively to its internal dictionary
+    This class adds entries iteratively to its internal dictionary
     structure.
     '''
     def add(self, key, node=None):
